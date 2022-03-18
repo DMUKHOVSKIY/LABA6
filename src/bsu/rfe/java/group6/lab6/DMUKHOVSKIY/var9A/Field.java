@@ -87,5 +87,18 @@ public class Field extends JPanel {
 
     }
 
+    public synchronized void canMove5(BouncingBall ball) throws InterruptedException {
+        if (count > 4) {
+            paused5 = false;
+            count = 0;
+        }
+        if (paused5) {
+// Если режим паузы включен, то поток, зашедший
+// внутрь данного метода, засыпает
+            count++;
+            wait();
+        }
+
+    }
 
 }
